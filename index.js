@@ -100,8 +100,26 @@ function Car(model, milesPerGallon) {
 }
 
 Car.prototype.fill = function(gallons){
-  this.tank += gallons;
+  return this.tank += gallons;
 }
+
+Car.prototype.drive = function(distance){
+  this.odometer += distance;
+  this.tank -= distance / this.milesPerGallon;
+  if(this.tank <= 0){
+    this.tank = 0;
+    return `I ran out of fuel at ${this.odometer} miles`;
+} else {
+    return 'I am good to mob';
+}
+}
+
+
+const myCar = new Car('Corolla', 30); 
+
+myCar.fill(6);
+console.log(myCar.drive(180));
+
 
 /*
   TASK 3
@@ -123,16 +141,19 @@ Baby.prototype.play = function(){
   return `Playing with ${this.favoriteToy}`
 }
 
+const miniMe = new Baby('Galo', '6 months', 'drums');
+
+console.log(miniMe.play());
 
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. When 'this' is in an method, it refers to the object the method is in
+  2. An easy way to know what 'this' is refering to is by looking at what is to the left of '.'
+  3. If 'this' isnt in a method, 'this' will refer to the window
+  4. 'This' basically lets you hack scope
 */
 
 
